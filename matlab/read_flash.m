@@ -4,8 +4,6 @@
 
 clear variables;
 
-% If set to true elements are loaded without conversion
-raw_data = false;
 
 % Load flash content into vector
 flash = hexfile2vec('flash.txt');
@@ -50,38 +48,70 @@ for i = 0:9
     FRAME_RATE(i+1) = subvect0b(flash, 25616, 25616);
 end
 
+%--------------------------------------------------------------------------
 % Convert raw data
-if raw_data == false
-    
-    % Temparature boundary [°C]
-   for i = 1:9
-       TB(i) = uint82int8(TB(i)) / 2;   
-   end
-   
-   % Voltages [V]
-   for i = 1:10
-       VSHC_LVL(i) = VSHC_LVL(i)*0.2+3;
-       VSLC_LVL(i) = -(VSLC_LVL(i)*0.2+3);
-       VSLC_LVL2(i) = VSLC_LVL2(i)*0.2+3;
-   end
-   
-   VCM_DC = VCM_DC / 20;
-   
-   % Frame rate [Hz]
-   for i = 1:10
-       switch(FRAME_RATE(i))
-           case 0:0x0f
-               FRAME_RATE(i) = FRAME_RATE(i)*12.5+12.5;
-           case 0x39
-               FRAME_RATE(i) = 200;
-           case 0x3a
-               FRAME_RATE(i) = 100;
-           otherwise
-               FRAME_RATE(i) = 50;
-       end
+%--------------------------------------------------------------------------
+
+% Temparature boundary [°C]
+for i = 1:9
+   TB(i) = uint82int8(TB(i)) / 2;   
+end
+
+% Voltages [V]
+for i = 1:10
+   VSHC_LVL(i) = VSHC_LVL(i)*0.2+3;
+   VSLC_LVL(i) = -(VSLC_LVL(i)*0.2+3);
+   VSLC_LVL2(i) = VSLC_LVL2(i)*0.2+3;
+end
+
+VCM_DC = VCM_DC / 20;
+
+% Frame rate [Hz]
+for i = 1:10
+   switch(FRAME_RATE(i))
+       case 0:0x0f
+           FRAME_RATE(i) = FRAME_RATE(i)*12.5+12.5;
+       case 0x39
+           FRAME_RATE(i) = 200;
+       case 0x3a
+           FRAME_RATE(i) = 100;
+       otherwise
+           FRAME_RATE(i) = 50;
    end
 end
 
+%--------------------------------------------------------------------------
+% Compute waveforms
+%--------------------------------------------------------------------------
+LUTV_W = cell(10);
+LUT0_W = cell(10);
+LUT1_W = cell(10);
+LUT2_W = cell(10);
+LUT3_W = cell(10);
+LUT4_W = cell(10);
+LUT5_W = cell(10);
+LUT6_W = cell(10);
+LUT7_W = cell(10);
+LUTX_W = cell(10);
+for i = 1:10
+    LUTV_W{i} = lutv2wave(LUTV(i,:), [VCM_DC, 15+VCM_DC, -15+VCM_DC, 0]);
+    
+    LUT0_W{i} = lutc2wave(LUT0(i,:), [0, 15, -15, VSHC_LVL(i), VSLC_LVL(i), VSLC_LVL2(i), 0, 0]);
+    LUT1_W{i} = lutc2wave(LUT1(i,:), [0, 15, -15, VSHC_LVL(i), VSLC_LVL(i), VSLC_LVL2(i), 0, 0]);
+    LUT2_W{i} = lutc2wave(LUT2(i,:), [0, 15, -15, VSHC_LVL(i), VSLC_LVL(i), VSLC_LVL2(i), 0, 0]);
+    LUT3_W{i} = lutc2wave(LUT3(i,:), [0, 15, -15, VSHC_LVL(i), VSLC_LVL(i), VSLC_LVL2(i), 0, 0]);
+    LUT4_W{i} = lutc2wave(LUT4(i,:), [0, 15, -15, VSHC_LVL(i), VSLC_LVL(i), VSLC_LVL2(i), 0, 0]);
+    LUT5_W{i} = lutc2wave(LUT5(i,:), [0, 15, -15, VSHC_LVL(i), VSLC_LVL(i), VSLC_LVL2(i), 0, 0]);
+    LUT6_W{i} = lutc2wave(LUT6(i,:), [0, 15, -15, VSHC_LVL(i), VSLC_LVL(i), VSLC_LVL2(i), 0, 0]);
+    LUT7_W{i} = lutc2wave(LUT7(i,:), [0, 15, -15, VSHC_LVL(i), VSLC_LVL(i), VSLC_LVL2(i), 0, 0]);
+
+    LUTX_W{i} = lutx2wave(LUTX(i,:));
+end
+
+
+%--------------------------------------------------------------------------
+% Functions
+%--------------------------------------------------------------------------
 
 function out = hexfile2vec(file)
 % HEXFILE2VEC Loads flash content from text file
