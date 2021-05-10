@@ -50,11 +50,11 @@ const char* ReadColor(const char* str, uint8_t* color)
 	//Search for color
 	if((str1 = CMD_Trim(str, "black")))
 		*color = 0;
-	else if((str1 = CMD_Trim(str, "white")))
-		*color = 1;
-	else if((str1 = CMD_Trim(str, "green")))
-		*color = 2;
 	else if((str1 = CMD_Trim(str, "blue")))
+		*color = 1;
+	else if((str1 = CMD_Trim(str, "white")))
+		*color = 2;
+	else if((str1 = CMD_Trim(str, "green")))
 		*color = 3;
 	else if((str1 = CMD_Trim(str, "red")))
 		*color = 4;
@@ -63,6 +63,22 @@ const char* ReadColor(const char* str, uint8_t* color)
 	else if((str1 = CMD_Trim(str, "orange")))
 		*color = 6;
 	else if((str1 = CMD_Trim(str, "clean")))
+		*color = 7;
+	else if((str1 = CMD_Trim(str, "lut0")))
+		*color = 0;
+	else if((str1 = CMD_Trim(str, "lut1")))
+		*color = 1;
+	else if((str1 = CMD_Trim(str, "lut2")))
+		*color = 2;
+	else if((str1 = CMD_Trim(str, "lut3")))
+		*color = 3;
+	else if((str1 = CMD_Trim(str, "lut4")))
+		*color = 4;
+	else if((str1 = CMD_Trim(str, "lut5")))
+		*color = 5;
+	else if((str1 = CMD_Trim(str, "lut6")))
+		*color = 6;
+	else if((str1 = CMD_Trim(str, "lut7")))
 		*color = 7;
 	else
 		*color = 8;

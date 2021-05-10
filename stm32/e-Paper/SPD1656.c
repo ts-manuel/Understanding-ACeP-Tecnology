@@ -36,8 +36,9 @@ static EPD_Status_t EPD_BusyWait(uint32_t timeout_ms);
 static EPD_Status_t EPD_LoadLUT(uint8_t reg, const uint8_t* lut, int len);
 
 
+static const uint8_t color2lut[8] = {0,2,3,1,4,5,6,7};
 #define LOAD_VCM_LUT(_lut) 			EPD_LoadLUT(0x20, _lut, sizeof(_lut))
-#define LOAD_CLR_LUT(_color, _lut)	EPD_LoadLUT(0x21 + (_color), _lut, sizeof(_lut))
+#define LOAD_CLR_LUT(_color, _lut)	EPD_LoadLUT(0x21 + color2lut[(_color)], _lut, sizeof(_lut))
 #define LOAD_XON_LUT(_lut) 			EPD_LoadLUT(0x29, _lut, sizeof(_lut))
 
 
@@ -101,9 +102,9 @@ EPD_Status_t EPD_Init(void)
 	//Stock
 	LOAD_VCM_LUT(LUT_VCOM);
 	LOAD_CLR_LUT(0, LUT_COLOR_0);	//Black
-	LOAD_CLR_LUT(1, LUT_COLOR_1);	//White
-	LOAD_CLR_LUT(2, LUT_COLOR_2);	//Green
-	LOAD_CLR_LUT(3, LUT_COLOR_3);	//Blue
+	LOAD_CLR_LUT(1, LUT_COLOR_1);	//Blue
+	LOAD_CLR_LUT(2, LUT_COLOR_2);	//White
+	LOAD_CLR_LUT(3, LUT_COLOR_3);	//Green
 	LOAD_CLR_LUT(4, LUT_COLOR_4);	//Red
 	LOAD_CLR_LUT(5, LUT_COLOR_5);	//Yellow
 	LOAD_CLR_LUT(6, LUT_COLOR_6);	//Orange
@@ -113,9 +114,9 @@ EPD_Status_t EPD_Init(void)
 	//Self clear with transparent color
 	LOAD_VCM_LUT(LUT_VCOM_SC);
 	LOAD_CLR_LUT(0, LUT_COLOR_0_SC);	//Black
-	LOAD_CLR_LUT(1, LUT_COLOR_1_SC);    //White
-	LOAD_CLR_LUT(2, LUT_COLOR_2_SC);    //Green
-	LOAD_CLR_LUT(3, LUT_COLOR_3_SC);    //Blue
+	LOAD_CLR_LUT(1, LUT_COLOR_1_SC);    //Blue
+	LOAD_CLR_LUT(2, LUT_COLOR_2_SC);    //White
+	LOAD_CLR_LUT(3, LUT_COLOR_3_SC);    //Green
 	LOAD_CLR_LUT(4, LUT_COLOR_4_SC);    //Red
 	LOAD_CLR_LUT(5, LUT_COLOR_5_SC);    //Yellow
 	LOAD_CLR_LUT(6, LUT_COLOR_6_SC);    //Orange
