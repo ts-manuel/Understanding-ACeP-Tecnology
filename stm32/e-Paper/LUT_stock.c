@@ -1,35 +1,33 @@
 /**
  ******************************************************************************
- * @file      LUT_test.h
+ * @file      LUT_stock.c
  * @author    ts-manuel
- * @brief     Test LUTs
+ * @brief     stock LUTs
  *
  ******************************************************************************
  */
 
-#ifndef LUT_TEST_H_
-#define LUT_TEST_H_
+#include "LUTs.h"
 
-#include "LUT_defines.h"
 
 //----------------------------
 // Stock LUTs
 //----------------------------
-const uint8_t LUT_VCOM[] = {
+const uint8_t LUT_STOCK_VCOM[12*4] = {
 	1, VCM_LV(VCM_DC, VCM_HI, VCM_LO, VCM_HI, VCM_DC, VCM_LO, VCM_DC, VCM_HI),  1,100,100, 25,  1, 25,  1, 25,
 	1, VCM_LV(VCM_DC, VCM_LO, VCM_DC, VCM_HI, VCM_DC, VCM_LO, VCM_DC, VCM_HI),  1, 25,  1, 25,  1, 25,  1, 25,
 	1, VCM_LV(VCM_DC, VCM_LO, VCM_DC, VCM_HI, VCM_DC, VCM_LO, VCM_DC, VCM_HI),  1, 25,  1, 25,  1, 25,  1, 25,
 	1, VCM_LV(VCM_DC, VCM_LO, VCM_DC, VCM_DC, VCM_DC, VCM_DC, VCM_DC, VCM_DC),  1, 25, 52,  0,  0,  0,  0,  0,
 };
 
-const uint8_t LUT_COLOR_0[] = {
+const uint8_t LUT_STOCK_COLOR_0[13*4] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND),  1, 50, 77, 73, 25,  1, 25,  1,
 	1, PIX_LV(PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND), 25,  1, 25,  1, 25,  1, 25,  1,
 	1, PIX_LV(PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND), 25,  1, 14, 12, 25,  1, 14, 12,
 	1, PIX_LV(PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL, PIX_GND, PIX_GND, PIX_GND, PIX_GND), 22,  3,  1, 14, 63,  0,  0,  0,
 };
 
-const uint8_t LUT_COLOR_1[] = {
+const uint8_t LUT_STOCK_COLOR_1[13*5] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL, PIX_VSH),  1, 57, 43,103, 22,  1, 17,  8,
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH),  1,  3, 22,  1, 17,  8,  1,  3,
 	1, PIX_LV(PIX_VSL, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_VSL, PIX_GND), 22,  1, 17,  8,  1,  3, 22,  1,
@@ -37,21 +35,21 @@ const uint8_t LUT_COLOR_1[] = {
 	1, PIX_LV(PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_LVH, PIX_GND),  3, 22,  1, 17,  8, 12, 14, 26,
 };
 
-const uint8_t LUT_COLOR_2[] = {
+const uint8_t LUT_STOCK_COLOR_2[13*4] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH),  1, 32, 68,113, 13, 21,  5, 13,
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH), 13, 21,  5, 13, 13, 25,  1, 13,
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH), 13, 25,  1, 13, 13, 25,  1, 13,
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND), 13, 25, 52,  0,  0,  0,  0,  0,
 };
 
-const uint8_t LUT_COLOR_3[] = {
+const uint8_t LUT_STOCK_COLOR_3[13*4] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH),  1, 67, 33,125,  1, 25,  1,  5,
 	1, PIX_LV(PIX_VSL, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL), 20,  1, 12, 14,  5, 20,  1, 12,
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_VSL), 14,  5, 20,  1, 12, 14,  5, 20,
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL, PIX_GND),  1, 12, 14,  5, 20,  1, 12, 65,
 };
 
-const uint8_t LUT_COLOR_4[] = {
+const uint8_t LUT_STOCK_COLOR_4[13*5] = {
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_VSL),  1,139, 86,  1, 25,  1, 16,  9,
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH),  1, 12, 13,  1, 25,  1, 12, 13,
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND),  1, 25,  1, 12, 13,  1, 25,  1,
@@ -59,7 +57,7 @@ const uint8_t LUT_COLOR_4[] = {
 	1, PIX_LV(PIX_LVH, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND), 15, 26,  0,  0,  0,  0,  0,  0,
 };
 
-const uint8_t LUT_COLOR_5[] = {
+const uint8_t LUT_STOCK_COLOR_5[13*5] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH),  1, 78, 22,125,  1, 25,  1,  5,
 	1, PIX_LV(PIX_VSL, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL), 20,  1, 24,  2,  5, 20,  1, 24,
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND),  2,  5, 20,  1, 24,  2, 25,  1,
@@ -67,14 +65,14 @@ const uint8_t LUT_COLOR_5[] = {
 	1, PIX_LV(PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND),  1,  0,  0,  0,  0,  0,  0,  0,
 };
 
-const uint8_t LUT_COLOR_6[] = {
+const uint8_t LUT_STOCK_COLOR_6[13*4] = {
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_VSL),  1,130, 95,  1,  1, 25, 15, 10,
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH),  1,  1, 25, 25,  1,  1, 25, 15,
 	1, PIX_LV(PIX_VSL, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND), 10,  1,  1, 25, 25,  1,  1, 25,
 	1, PIX_LV(PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL, PIX_GND, PIX_GND, PIX_GND, PIX_GND), 15, 10,  1, 25, 52,  0,  0,  0,
 };
 
-const uint8_t LUT_COLOR_7[] = {
+const uint8_t LUT_STOCK_COLOR_7[13*5] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH),  1, 58, 42,100, 19,  7, 23,  2,
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND),  1, 19,  7, 23,  2,  1, 19,  7,
 	1, PIX_LV(PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND), 23,  2,  1, 19,  7, 23,  2,  1,
@@ -82,7 +80,7 @@ const uint8_t LUT_COLOR_7[] = {
 	1, PIX_LV(PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND), 52,  0,  0,  0,  0,  0,  0,  0,
 };
 
-const uint8_t LUT_XON[] = {
+const uint8_t LUT_STOCK_XON[10*1] = {
 	1, XON_LV(XON_SCN, XON_SCN, XON_SCN, XON_SCN, XON_SCN, XON_SCN, XON_SCN, XON_VGH), 255,255, 54,  0,  0,  0,  0,  0,
 };
 
@@ -90,7 +88,7 @@ const uint8_t LUT_XON[] = {
 //----------------------------
 // Self clear with transparent color LUTs
 //----------------------------
-const uint8_t LUT_VCOM_SC[] = {
+const uint8_t LUT_STOCK_SCT_VCOM[11*8] = {
 	1, VCM_LV(VCM_DC, VCM_HI, VCM_LO, VCM_HI, VCM_DC, VCM_LO, VCM_DC, VCM_HI),  1,100,100, 25,  1, 25,  1, 25,
 	1, VCM_LV(VCM_DC, VCM_LO, VCM_DC, VCM_HI, VCM_DC, VCM_LO, VCM_DC, VCM_HI),  1, 25,  1, 25,  1, 25,  1, 25,
 	1, VCM_LV(VCM_DC, VCM_LO, VCM_DC, VCM_HI, VCM_DC, VCM_LO, VCM_DC, VCM_HI),  1, 25,  1, 25,  1, 25,  1, 25,
@@ -101,7 +99,7 @@ const uint8_t LUT_VCOM_SC[] = {
 	1, VCM_LV(VCM_DC, VCM_LO, VCM_DC, VCM_DC, VCM_DC, VCM_DC, VCM_DC, VCM_DC),  1, 25, 52,  0,  0,  0,  0,  0,
 };
 
-const uint8_t LUT_COLOR_0_SC[] = {
+const uint8_t LUT_STOCK_SCT_COLOR_0[13*9] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH),  1, 58, 42,100, 19,  7, 23,  2,
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND),  1, 19,  7, 23,  2,  1, 19,  7,
 	1, PIX_LV(PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND), 23,  2,  1, 19,  7, 23,  2,  1,
@@ -113,7 +111,7 @@ const uint8_t LUT_COLOR_0_SC[] = {
 	1, PIX_LV(PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL, PIX_GND, PIX_GND, PIX_GND, PIX_GND), 22,  3,  1, 14, 63,  0,  0,  0,
 };
 
-const uint8_t LUT_COLOR_1_SC[] = {
+const uint8_t LUT_STOCK_SCT_COLOR_1[13*10] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH),  1, 58, 42,100, 19,  7, 23,  2,
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND),  1, 19,  7, 23,  2,  1, 19,  7,
 	1, PIX_LV(PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND), 23,  2,  1, 19,  7, 23,  2,  1,
@@ -126,7 +124,7 @@ const uint8_t LUT_COLOR_1_SC[] = {
 	1, PIX_LV(PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_LVH, PIX_GND),  3, 22,  1, 17,  8, 12, 14, 26,
 };
 
-const uint8_t LUT_COLOR_2_SC[] = {
+const uint8_t LUT_STOCK_SCT_COLOR_2[13*9] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH),  1, 58, 42,100, 19,  7, 23,  2,
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND),  1, 19,  7, 23,  2,  1, 19,  7,
 	1, PIX_LV(PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND), 23,  2,  1, 19,  7, 23,  2,  1,
@@ -138,7 +136,7 @@ const uint8_t LUT_COLOR_2_SC[] = {
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND), 13, 25, 52,  0,  0,  0,  0,  0,
 };
 
-const uint8_t LUT_COLOR_3_SC[] = {
+const uint8_t LUT_STOCK_SCT_COLOR_3[13*9] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH),  1, 58, 42,100, 19,  7, 23,  2,
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND),  1, 19,  7, 23,  2,  1, 19,  7,
 	1, PIX_LV(PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND), 23,  2,  1, 19,  7, 23,  2,  1,
@@ -150,7 +148,7 @@ const uint8_t LUT_COLOR_3_SC[] = {
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL, PIX_GND),  1, 12, 14,  5, 20,  1, 12, 65,
 };
 
-const uint8_t LUT_COLOR_4_SC[] = {
+const uint8_t LUT_STOCK_SCT_COLOR_4[13*10] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH),  1, 58, 42,100, 19,  7, 23,  2,
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND),  1, 19,  7, 23,  2,  1, 19,  7,
 	1, PIX_LV(PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND), 23,  2,  1, 19,  7, 23,  2,  1,
@@ -163,7 +161,7 @@ const uint8_t LUT_COLOR_4_SC[] = {
 	1, PIX_LV(PIX_LVH, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND), 15, 26,  0,  0,  0,  0,  0,  0,
 };
 
-const uint8_t LUT_COLOR_5_SC[] = {
+const uint8_t LUT_STOCK_SCT_COLOR_5[13*10] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH),  1, 58, 42,100, 19,  7, 23,  2,
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND),  1, 19,  7, 23,  2,  1, 19,  7,
 	1, PIX_LV(PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND), 23,  2,  1, 19,  7, 23,  2,  1,
@@ -176,7 +174,7 @@ const uint8_t LUT_COLOR_5_SC[] = {
 	1, PIX_LV(PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND),  1,  0,  0,  0,  0,  0,  0,  0,
 };
 
-const uint8_t LUT_COLOR_6_SC[] = {
+const uint8_t LUT_STOCK_SCT_COLOR_6[13*9] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH),  1, 58, 42,100, 19,  7, 23,  2,
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND),  1, 19,  7, 23,  2,  1, 19,  7,
 	1, PIX_LV(PIX_VSL, PIX_VSH, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_VSH, PIX_GND), 23,  2,  1, 19,  7, 23,  2,  1,
@@ -188,7 +186,7 @@ const uint8_t LUT_COLOR_6_SC[] = {
 	1, PIX_LV(PIX_VSH, PIX_VSL, PIX_GND, PIX_VSL, PIX_GND, PIX_GND, PIX_GND, PIX_GND), 15, 10,  1, 25, 52,  0,  0,  0,
 };
 
-const uint8_t LUT_COLOR_7_SC[] = {
+const uint8_t LUT_STOCK_SCT_COLOR_7[13*8] = {
 	1, PIX_LV(PIX_GND, PIX_VSH, PIX_VSL, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH),  1,100,100, 25,  1, 25,  1, 25,
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH),  1, 25,  1, 25,  1, 25,  1, 25,
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_GND, PIX_VSH, PIX_GND, PIX_VSL, PIX_GND, PIX_VSH),  1, 25,  1, 25,  1, 25,  1, 25,
@@ -199,9 +197,8 @@ const uint8_t LUT_COLOR_7_SC[] = {
 	1, PIX_LV(PIX_GND, PIX_VSL, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND, PIX_GND),  1, 25, 52,  0,  0,  0,  0,  0,
 };
 
-const uint8_t LUT_XON_SC[] = {
+const uint8_t LUT_STOCK_SCT_XON[10*2] = {
 	1, XON_LV(XON_SCN, XON_SCN, XON_SCN, XON_SCN, XON_SCN, XON_SCN, XON_SCN, XON_VGH), 255,255, 54,  0,  0,  0,  0,  0,
 	1, XON_LV(XON_SCN, XON_SCN, XON_SCN, XON_SCN, XON_SCN, XON_SCN, XON_SCN, XON_VGH), 255,255, 54,  0,  0,  0,  0,  0,
 };
 
-#endif /* LUT_TEST_H_ */

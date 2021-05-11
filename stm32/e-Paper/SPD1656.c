@@ -11,7 +11,7 @@
  */
 
 #include "SPD1656.h"
-#include "LUT_test.h"
+#include "LUTs.h"
 
 extern SPI_HandleTypeDef hspi1;
 
@@ -33,13 +33,6 @@ static void EPD_Reset(void);
 static void EPD_Command(uint8_t x);
 static void EPD_Data(uint8_t x);
 static EPD_Status_t EPD_BusyWait(uint32_t timeout_ms);
-static EPD_Status_t EPD_LoadLUT(uint8_t reg, const uint8_t* lut, int len);
-
-
-static const uint8_t color2lut[8] = {0,2,3,1,4,5,6,7};
-#define LOAD_VCM_LUT(_lut) 			EPD_LoadLUT(0x20, _lut, sizeof(_lut))
-#define LOAD_CLR_LUT(_color, _lut)	EPD_LoadLUT(0x21 + color2lut[(_color)], _lut, sizeof(_lut))
-#define LOAD_XON_LUT(_lut) 			EPD_LoadLUT(0x29, _lut, sizeof(_lut))
 
 
 //Static variables
@@ -98,31 +91,19 @@ EPD_Status_t EPD_Init(void)
 	EPD_Command(0x82);
 	EPD_Data(1050 / 50);	//data = VCOM(mV) / 50
 
-#if 0
-	//Stock
-	LOAD_VCM_LUT(LUT_VCOM);
-	LOAD_CLR_LUT(0, LUT_COLOR_0);	//Black
-	LOAD_CLR_LUT(1, LUT_COLOR_1);	//Blue
-	LOAD_CLR_LUT(2, LUT_COLOR_2);	//White
-	LOAD_CLR_LUT(3, LUT_COLOR_3);	//Green
-	LOAD_CLR_LUT(4, LUT_COLOR_4);	//Red
-	LOAD_CLR_LUT(5, LUT_COLOR_5);	//Yellow
-	LOAD_CLR_LUT(6, LUT_COLOR_6);	//Orange
-	LOAD_CLR_LUT(7, LUT_COLOR_7);	//Clean
-	LOAD_XON_LUT(LUT_XON);
-#else
-	//Self clear with transparent color
-	LOAD_VCM_LUT(LUT_VCOM_SC);
-	LOAD_CLR_LUT(0, LUT_COLOR_0_SC);	//Black
-	LOAD_CLR_LUT(1, LUT_COLOR_1_SC);    //Blue
-	LOAD_CLR_LUT(2, LUT_COLOR_2_SC);    //White
-	LOAD_CLR_LUT(3, LUT_COLOR_3_SC);    //Green
-	LOAD_CLR_LUT(4, LUT_COLOR_4_SC);    //Red
-	LOAD_CLR_LUT(5, LUT_COLOR_5_SC);    //Yellow
-	LOAD_CLR_LUT(6, LUT_COLOR_6_SC);    //Orange
-	LOAD_CLR_LUT(7, LUT_COLOR_7_SC);    //Transparent
-	LOAD_XON_LUT(LUT_XON_SC);
-#endif
+
+	//Stock LUTs
+	LOAD_VCM_LUT(LUT_STOCK_VCOM);
+	LOAD_CLR_LUT(0, LUT_STOCK_COLOR_0);	//Black
+	LOAD_CLR_LUT(1, LUT_STOCK_COLOR_1);	//Blue
+	LOAD_CLR_LUT(2, LUT_STOCK_COLOR_2);	//White
+	LOAD_CLR_LUT(3, LUT_STOCK_COLOR_3);	//Green
+	LOAD_CLR_LUT(4, LUT_STOCK_COLOR_4);	//Red
+	LOAD_CLR_LUT(5, LUT_STOCK_COLOR_5);	//Yellow
+	LOAD_CLR_LUT(6, LUT_STOCK_COLOR_6);	//Orange
+	LOAD_CLR_LUT(7, LUT_STOCK_COLOR_7);	//Clean
+	LOAD_XON_LUT(LUT_STOCK_XON);
+
 
 	Initialized = true;
 	return EPD_OK;
@@ -293,7 +274,7 @@ void EPD_FlashRead(uint32_t addr, uint8_t* buffer, int len)
 /*
  * Load Look-Up Table pad with zeros if required
  * */
-static EPD_Status_t EPD_LoadLUT(uint8_t reg, const uint8_t* lut, int len)
+EPD_Status_t EPD_LoadLUT(uint8_t reg, const uint8_t* lut, int len)
 {
 	int pad;
 

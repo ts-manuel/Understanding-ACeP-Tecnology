@@ -28,5 +28,6 @@ typedef struct{
 const char* CMD_Trim(const char* str, const char* msg);
 const char* CMD_TrimSpaces(const char* str);
 const char* ReadColor(const char* str, uint8_t* color);
+int CMD_Find(const char* str, const char** str_array, int len);
 
 #endif /* INC_CMD_COMMON_H_ */

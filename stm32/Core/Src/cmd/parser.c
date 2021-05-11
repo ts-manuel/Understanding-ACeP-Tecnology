@@ -14,11 +14,13 @@
 void CMD_display(const char* args);
 void CMD_fread(const char* args);
 void CMD_draw(const char* args);
+void CMD_ldlut(const char* args);
 const Command_t commands[] =
 {
 		{CMD_display,	"display"},
 		{CMD_fread, 	"fread"},
-		{CMD_draw,		"draw"}
+		{CMD_draw,		"draw"},
+		{CMD_ldlut, 	"ldlut"},
 };
 
 

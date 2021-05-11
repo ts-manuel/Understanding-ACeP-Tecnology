@@ -85,3 +85,31 @@ const char* ReadColor(const char* str, uint8_t* color)
 
 	return CMD_TrimSpaces(str1);
 }
+
+
+/*
+ * Searcher for an occurrence of one element of str_array in str
+ * */
+int CMD_Find(const char* str, const char** str_array, int len)
+{
+	int res = -1;
+
+	for(int i = 0; i < len && res == -1; i++)
+	{
+		char* c = strstr(str, str_array[i]);
+
+		if(c != NULL)
+		{
+			if(c != str && *(c-1) != ' ')
+				continue;
+
+			int len = strlen(str_array[i]);
+			if(*(c+len) != '\0' && *(c+len) != ' ')
+				continue;
+
+			res = i;
+		}
+	}
+
+	return res;
+}
